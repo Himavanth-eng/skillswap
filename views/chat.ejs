@@ -1,0 +1,17 @@
+
+<!doctype html>
+<html><head><%- include('partials/head') %></head><body>
+<%- include('partials/header') %>
+<main class="container">
+  <h2>Chat for booking: <%= booking._id %></h2>
+  <div class="chat-box">
+    <% messages.forEach(m => { %>
+      <div class="msg"><strong><%= m.from.name %>:</strong> <%= m.text %> <span class="time"><%= new Date(m.createdAt).toLocaleString() %></span></div>
+    <% }) %>
+  </div>
+  <form method="post" action="/chat/<%= booking._id %>">
+    <input name="text" placeholder="Type message" required>
+    <button type="submit">Send</button>
+  </form>
+</main>
+<%- include('partials/footer') %></body></html>

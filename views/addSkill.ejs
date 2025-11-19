@@ -1,0 +1,17 @@
+
+<!doctype html>
+<html><head><%- include('partials/head') %></head><body>
+<%- include('partials/header') %>
+<main class="container">
+  <h2>Add Skill</h2>
+  <% if (typeof error !== 'undefined') { %><p class="error"><%= error %></p><% } %>
+  <form method="post" action="/skills/add" enctype="multipart/form-data">
+    <input name="title" placeholder="Skill title" required>
+    <input name="category" placeholder="Category">
+    <textarea name="description" placeholder="Describe the skill"></textarea>
+    <input name="hourlyRate" placeholder="Hours per credit (default 1)">
+    <input type="file" name="image">
+    <button type="submit">Add Skill</button>
+  </form>
+</main>
+<%- include('partials/footer') %></body></html>

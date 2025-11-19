@@ -1,0 +1,15 @@
+
+<!doctype html>
+<html><head><%- include('partials/head') %></head><body>
+<%- include('partials/header') %>
+<main class="container">
+  <h2>Register</h2>
+  <% if (typeof error !== 'undefined') { %><p class="error"><%= error %></p><% } %>
+  <form method="post" action="/auth/register">
+    <input name="name" placeholder="Full name" required>
+    <input name="email" placeholder="Email" type="email" required>
+    <input name="password" placeholder="Password" type="password" required>
+    <button type="submit">Register</button>
+  </form>
+</main>
+<%- include('partials/footer') %></body></html>

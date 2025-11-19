@@ -1,0 +1,17 @@
+
+<!doctype html>
+<html><head><%- include('partials/head') %></head><body>
+<%- include('partials/header') %>
+<main class="container">
+  <h2>Skills</h2>
+  <div class="grid">
+    <% skills.forEach(s => { %>
+      <div class="card">
+        <h3><a href="/skills/<%= s._id %>"><%= s.title %></a></h3>
+        <p><%= s.description.substring(0,120) %></p>
+        <p>By <%= s.teacher.name %></p>
+      </div>
+    <% }) %>
+  </div>
+</main>
+<%- include('partials/footer') %></body></html>

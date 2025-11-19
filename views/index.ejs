@@ -1,0 +1,27 @@
+
+<!doctype html>
+<html>
+  <head><%- include('partials/head') %></head>
+  <body>
+    <%- include('partials/header') %>
+    <main class="container">
+      <h2>Recent Skills</h2>
+      <div class="grid">
+        <% recent.forEach(s => { %>
+          <div class="card">
+            <h3><a href="/skills/<%= s._id %>"><%= s.title %></a></h3>
+            <p>By <%= s.teacher.name %></p>
+            <% if (currentUser) { %>
+              <div class="card">
+                <h3>Your Credits: <%= currentUser.credits %></h3>
+              </div>
+            <% } %>
+
+            <p><%= s.description.substring(0,120) %></p>
+          </div>
+        <% }) %>
+      </div>
+    </main>
+    <%- include('partials/footer') %>
+  </body>
+</html>

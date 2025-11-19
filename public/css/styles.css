@@ -1,0 +1,101 @@
+
+body{font-family:Arial,Helvetica,sans-serif;margin:0;padding:0;background:#f9f9f9;color:#222}
+.container{max-width:900px;margin:20px auto;padding:0 15px}
+.site-header{background:#333;color:#fff;padding:10px 0}
+.site-header .container{display:flex;align-items:center;justify-content:space-between}
+.site-header a{color:#fff;margin-left:12px;text-decoration:none}
+.site-footer{background:#222;color:#ddd;padding:10px 0;text-align:center;margin-top:30px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.card{background:merron;padding:12px;border-radius:6px;box-shadow:0 1px 3px rgba(0,0,0,0.06)}
+form input, form textarea, form button{display:block;width:100%;margin:6px 0;padding:8px;border:1px solid #ddd;border-radius:4px}
+.error{color:#b00020}
+.chat-box{background:#fff;padding:10px;border-radius:6px;max-height:300px;overflow:auto;margin-bottom:10px}
+.msg{padding:6px;border-bottom:1px solid #eee}
+.small{font-size:0.9rem;color:#ddd;margin-left:8px}
+/* NAVBAR GLASS EFFECT */
+.site-header {
+  backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.1);
+  padding: 15px 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+}
+
+.nav-container {
+  max-width: 1150px;
+  margin: auto;
+  padding: 0 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo-text {
+  font-size: 28px;
+  font-weight: 700;
+  text-decoration: none;
+  background: linear-gradient(45deg, #562020, #100634);
+
+  
+}
+
+/* NAV BUTTONS */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.nav-btn {
+  padding: 8px 14px;
+  font-weight: 500;
+  border-radius: 8px;
+  text-decoration: none;
+  color: white;
+  transition: all 0.25s ease-in-out;
+  border: 1px solid transparent;
+}
+
+.nav-btn:hover {
+  background: rgba(255,255,255,0.18);
+  border-color: rgba(255,255,255,0.3);
+  transform: translateY(-2px);
+}
+
+/* HIGHLIGHTED BUTTON */
+.highlight {
+  background: rgba(255,255,255,0.25);
+  border: 1px solid rgba(255,255,255,0.4);
+  font-weight: 600;
+}
+
+.highlight:hover {
+  background: rgba(255,255,255,0.35);
+}
+
+/* USER INFO */
+.user-info {
+  font-size: 14px;
+  opacity: 0.9;
+  margin-left: 10px;
+}
+
+/* CREDIT BADGE */
+.credit-badge {
+  background: #FFD93D;
+  color: #000;
+  padding: 6px 12px;
+  border-radius: 14px;
+  font-weight: 600;
+  margin-left: 10px;
+  box-shadow: 0 0 10px rgba(255,217,61,0.6);
+  animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+  from { box-shadow: 0 0 6px rgba(255,217,61,0.4); }
+  to { box-shadow: 0 0 16px rgba(255,217,61,0.9); }
+}

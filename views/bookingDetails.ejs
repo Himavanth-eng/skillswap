@@ -1,0 +1,12 @@
+<!doctype html>
+<html><head><%- include('partials/head') %></head><body>
+<%- include('partials/header') %>
+<main class="container">
+  <h2>Booking Detail</h2>
+  <p>Skill: <%= booking.skill.title %></p>
+  <p>Student: <%= booking.student.name %></p>
+  <p>Teacher: <%= booking.teacher.name %></p>
+  <p>Time: <%= booking.time.toLocaleString() %></p>
+  <p>Status: <%= booking.status %></p>
+</main>
+<%- include('partials/footer') %></body></html>

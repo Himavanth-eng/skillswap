@@ -1,0 +1,36 @@
+
+<!doctype html>
+<html><head><%- include('partials/head') %></head><body>
+<%- include('partials/header') %>
+<main class="container">
+  <h2>Your Bookings</h2>
+  <h3>As Student</h3>
+  <% asStudent.forEach(b => { %>
+    <div class="card">
+      <p>Skill: <a href="/skills/<%= b.skill._id %>"><%= b.skill.title %></a></p>
+      <p>Teacher: <%= b.teacher.name %></p>
+      <p>Time: <%= b.time.toLocaleString() %></p>
+      <p>Status: <%= b.status %></p>
+      <% if (b.status === "completed") { %>
+          <a href="<%= b.skillPDF %>" download class="nav-btn highlight">Download Skill PDF</a>
+      <% } %>
+    </div>
+  <% }) %>
+  <h3>As Teacher</h3>
+  <% asTeacher.forEach(b => { %>
+    <div class="card">
+      <p>Skill: <a href="/skills/<%= b.skill._id %>"><%= b.skill.title %></a></p>
+      <p>Student: <%= b.student.name %></p>
+      <p>Time: <%= b.time.toLocaleString() %></p>
+      <p>Status: <%= b.status %></p>
+      <% if (b.status === 'requested') { %>
+        <form method="post" action="/bookings/<%= b._id %>/accept" style="display:inline"><button>Accept</button></form>
+        <form method="post" action="/bookings/<%= b._id %>/reject" style="display:inline"><button>Reject</button></form>
+      <% } %>
+      <% if (b.status === 'accepted') { %>
+        <form method="post" action="/bookings/<%= b._id %>/complete" style="display:inline"><button>Mark Complete</button></form>
+      <% } %>
+    </div>
+  <% }) %>
+</main>
+<%- include('partials/footer') %></body></html>

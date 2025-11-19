@@ -1,0 +1,31 @@
+<header class="site-header">
+  <div class="nav-container">
+    <div class="logo">
+      <a href="/" class="logo-text">SkillSwap</a>
+    </div>
+
+    <nav class="nav-links">
+      <a href="/skills" class="nav-btn">Skills</a>
+
+      <% if (!currentUser) { %>
+        <a href="/auth/login" class="nav-btn">Login</a>
+        <a href="/auth/register" class="nav-btn highlight">Register</a>
+      <% } else { %>
+        <a href="/bookings" class="nav-btn">Bookings</a>
+        <a href="/skills/add" class="nav-btn">Add Skill</a>
+        <a href="/auth/logout" class="nav-btn">Logout</a>
+
+        <!-- User Info -->
+        <span class="user-info">
+          👋 <%= currentUser.name %>
+        </span>
+
+        <!-- Credit Badge -->
+        <span class="credit-badge">
+          ⚡ <%= currentUser.credits %> credits
+        </span>
+      <% } %>
+    </nav>
+  </div>
+</header>
+
