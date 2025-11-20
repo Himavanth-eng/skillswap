@@ -185,3 +185,124 @@ form input, form textarea, form button{display:block;width:100%;margin:6px 0;pad
   0% { transform: translateX(100%); }
   100% { transform: translateX(-100%); }
 }
+
+
+
+.dash-container {
+  padding: 40px 60px;
+  color: #1a1a1a;
+}
+
+/* HERO */
+.dash-hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.hero-left h1 {
+  font-size: 2.8rem;
+  font-weight: 700;
+}
+
+.hero-buttons {
+  margin-top: 20px;
+  display: flex;
+  gap: 15px;
+}
+
+.btn-primary {
+  padding: 12px 30px;
+  background: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+}
+
+.btn-secondary {
+  padding: 12px 30px;
+  background: #e9ecef;
+  color: black;
+  border-radius: 8px;
+}
+
+/* CARDS */
+.top-cards {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+}
+
+.dash-card {
+  background: white;
+  padding: 25px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.small-link {
+  font-size: 0.85rem;
+  color: #007bff;
+}
+
+.ongoing-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.light {
+  color: #777;
+}
+
+/* MATCHES */
+.match-grid {
+  margin-top: 15px;
+  display: flex;
+  gap: 20px;
+}
+
+.match-card {
+  text-align: center;
+  background: white;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.match-card img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+}
+
+/* CATEGORIES */
+.cat-grid {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+.cat-item {
+  background: white;
+  padding: 20px;
+  border-radius: 14px;
+  text-align: center;
+  font-weight: 500;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* RECENT */
+.recent-grid {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+

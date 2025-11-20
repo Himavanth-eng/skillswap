@@ -4,17 +4,17 @@
   <body>
     <%- include('partials/header') %>
 
-    <!-- ⭐ NEW HERO SECTION -->
+    <!-- ⭐ NEW HERO SECTION
     <section class="hero">
       <div class="hero-content">
         <h1>SkillSwap – Learn Anything by Sharing Skills</h1>
         <p>Swap your talents, earn credits, and learn new skills from people across the community.</p>
         <a href="/skills" class="hero-btn">Explore Skills</a>
       </div>
-    </section>
+    </section> -->
 
     <!-- ⭐ NEW FEATURES SECTION -->
-    <section class="features">
+    <!-- <section class="features">
       <h2>Why SkillSwap?</h2>
 
       <div class="feature-grid">
@@ -33,37 +33,137 @@
           <p>Connect with learners, creators, and talented individuals around you.</p>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <!-- ⭐ NEW MARQUEE SCROLL SECTION -->
-    <section class="marquee-section">
+    <!-- <section class="marquee-section">
       <div class="marquee">
         <span>
           Web Development • Guitar • Cooking • Python • Fitness Training • UI/UX • Painting • Video Editing • Photography • Public Speaking •
         </span>
       </div>
-    </section>
+    </section> -->
+    <main class="dash-container">
 
-    <!-- ⭐ EXISTING CONTENT -->
-    <main class="container">
-      <h2>Recent Skills</h2>
-      <div class="grid">
-        <% recent.forEach(s => { %>
-          <div class="card">
-            <h3><a href="/skills/<%= s._id %>"><%= s.title %></a></h3>
-            <p>By <%= s.teacher.name %></p>
+  <!-- HERO AREA -->
+  <section class="dash-hero">
+    <div class="hero-left">
+      <h1>Learn, Teach, Grow — Together.</h1>
+      <p>A peer-to-peer, credit-based skill exchange platform.</p>
 
-            <% if (currentUser) { %>
-              <div class="card">
-                <h3>Your Credits: <%= currentUser.credits %></h3>
-              </div>
-            <% } %>
-
-            <p><%= s.description.substring(0,120) %></p>
-          </div>
-        <% }) %>
+      <div class="hero-buttons">
+        <a href="/skills" class="btn-primary">Find a Skill Partner</a>
+        <a href="/skills/add" class="btn-secondary">Start Teaching & Earn Credits</a>
       </div>
-    </main>
+    </div>
+
+    <div class="hero-img">
+      <img src="/img/hero-illustration.png" alt="">
+    </div>
+  </section>
+
+
+  <!-- TOP CARDS SECTION -->
+  <section class="top-cards">
+    
+    <div class="dash-card">
+      <h3>⚡ <%= currentUser ? currentUser.credits : 0 %> Credits</h3>
+      <p>Skills You Can Teach</p>
+      <a href="/skills/add" class="small-link">+ Add More</a>
+    </div>
+
+    <div class="dash-card">
+      <h3>Skills You Can Teach</h3>
+      <p>Web Development, Graphic Design...</p>
+      <a href="/skills/add" class="small-link">+ Add More</a>
+    </div>
+
+    <div class="dash-card">
+      <h3>Skills You Want to Learn</h3>
+      <p>Programming, Designing...</p>
+    </div>
+
+    <div class="dash-card ongoing">
+      <h3>Ongoing Session</h3>
+      <div class="ongoing-info">
+        <img src="/img/user.png">
+        <div>
+          <p><b>Michael</b></p>
+          <p class="light">Public Speaking</p>
+        </div>
+      </div>
+      <a class="btn-primary small">Join Session</a>
+    </div>
+  </section>
+
+
+  <!-- MATCHES SECTION -->
+  <section class="matches">
+    <h2>Your Best Matches Today</h2>
+    <div class="match-grid">
+
+      <div class="match-card">
+        <img src="/img/user1.jpg">
+        <h4>Sarah</h4>
+        <p>Public Speaking</p>
+        <a class="btn-primary small">Connect Now</a>
+      </div>
+
+      <div class="match-card">
+        <img src="/img/user2.jpg">
+        <h4>David</h4>
+        <p>Digital Marketing</p>
+        <a class="btn-primary small">Connect Now</a>
+      </div>
+
+      <div class="match-card">
+        <img src="/img/user3.jpg">
+        <h4>Emily</h4>
+        <p>Web Development</p>
+        <a class="btn-primary small">Connect Now</a>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- SKILL CATEGORIES -->
+  <section class="cat-section">
+    <h2>Skill Categories</h2>
+    <div class="cat-grid">
+
+      <div class="cat-item">Programming</div>
+      <div class="cat-item">Designing</div>
+      <div class="cat-item">Public Speaking</div>
+      <div class="cat-item">Photography</div>
+      <div class="cat-item">Music</div>
+      <div class="cat-item">Soft Skills</div>
+      <div class="cat-item">Languages</div>
+      <div class="cat-item">Academics</div>
+
+    </div>
+  </section>
+
+
+  <!-- RECENT SKILLS (Your Original Data) -->
+  <section class="recent">
+    <h2>Recently Added Skills</h2>
+
+    <div class="recent-grid">
+      <% recent.forEach(s => { %>
+        <div class="dash-card">
+          <h3><a href="/skills/<%= s._id %>"><%= s.title %></a></h3>
+          <p class="light">By <%= s.teacher.name %></p>
+          <p><%= s.description.substring(0,120) %></p>
+        </div>
+      <% }) %>
+    </div>
+  </section>
+
+</main>
+
+    
+    
 
     <%- include('partials/footer') %>
   </body>
