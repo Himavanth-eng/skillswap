@@ -1,9 +1,50 @@
-
 <!doctype html>
 <html>
   <head><%- include('partials/head') %></head>
   <body>
     <%- include('partials/header') %>
+
+    <!-- ⭐ NEW HERO SECTION -->
+    <section class="hero">
+      <div class="hero-content">
+        <h1>SkillSwap – Learn Anything by Sharing Skills</h1>
+        <p>Swap your talents, earn credits, and learn new skills from people across the community.</p>
+        <a href="/skills" class="hero-btn">Explore Skills</a>
+      </div>
+    </section>
+
+    <!-- ⭐ NEW FEATURES SECTION -->
+    <section class="features">
+      <h2>Why SkillSwap?</h2>
+
+      <div class="feature-grid">
+        <div class="feature-card">
+          <h3>🔄 Skill Exchange</h3>
+          <p>Teach what you know and learn what you don’t — all without spending money.</p>
+        </div>
+
+        <div class="feature-card">
+          <h3>⚡ Earn Credits</h3>
+          <p>Gain credits by teaching others and use them to learn new skills.</p>
+        </div>
+
+        <div class="feature-card">
+          <h3>🌍 Community Powered</h3>
+          <p>Connect with learners, creators, and talented individuals around you.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ⭐ NEW MARQUEE SCROLL SECTION -->
+    <section class="marquee-section">
+      <div class="marquee">
+        <span>
+          Web Development • Guitar • Cooking • Python • Fitness Training • UI/UX • Painting • Video Editing • Photography • Public Speaking •
+        </span>
+      </div>
+    </section>
+
+    <!-- ⭐ EXISTING CONTENT -->
     <main class="container">
       <h2>Recent Skills</h2>
       <div class="grid">
@@ -11,6 +52,7 @@
           <div class="card">
             <h3><a href="/skills/<%= s._id %>"><%= s.title %></a></h3>
             <p>By <%= s.teacher.name %></p>
+
             <% if (currentUser) { %>
               <div class="card">
                 <h3>Your Credits: <%= currentUser.credits %></h3>
@@ -22,6 +64,7 @@
         <% }) %>
       </div>
     </main>
+
     <%- include('partials/footer') %>
   </body>
 </html>
