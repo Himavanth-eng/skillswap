@@ -4,163 +4,188 @@
   <body>
     <%- include('partials/header') %>
 
-    <!-- ⭐ NEW HERO SECTION
-    <section class="hero">
-      <div class="hero-content">
-        <h1>SkillSwap – Learn Anything by Sharing Skills</h1>
-        <p>Swap your talents, earn credits, and learn new skills from people across the community.</p>
-        <a href="/skills" class="hero-btn">Explore Skills</a>
-      </div>
-    </section> -->
+    <main class="dashboard single-column">
 
-    <!-- ⭐ NEW FEATURES SECTION -->
-    <!-- <section class="features">
-      <h2>Why SkillSwap?</h2>
+  <!-- HERO (full-width) -->
+  <section class="hero-card">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <h1>Learn, Teach, Grow — Together.</h1>
+        <p class="muted">A peer-to-peer, credit-based skill exchange platform.</p>
 
-      <div class="feature-grid">
-        <div class="feature-card">
-          <h3>🔄 Skill Exchange</h3>
-          <p>Teach what you know and learn what you don’t — all without spending money.</p>
+        <div class="hero-cta">
+          <a href="/skills" class="btn btn-primary">Find a Skill Partner</a>
+          <a href="/skills/add" class="btn btn-ghost">Start Teaching & Earn Credits</a>
         </div>
 
-        <div class="feature-card">
-          <h3>⚡ Earn Credits</h3>
-          <p>Gain credits by teaching others and use them to learn new skills.</p>
+        <div class="hero-stats">
+          <div class="stat">
+            <div class="stat-num"><%= currentUser ? currentUser.credits : 0 %></div>
+            <div class="stat-label">Credits</div>
+          </div>
+
+          <div class="stat">
+            <div class="stat-num"><%= typeof totalUsers !== 'undefined' ? totalUsers : '-' %></div>
+            <div class="stat-label">Users</div>
+          </div>
+
+          <div class="stat">
+            <div class="stat-num"><%= typeof totalSkills !== 'undefined' ? totalSkills : '-' %></div>
+            <div class="stat-label">Skills</div>
+          </div>
         </div>
-
-        <div class="feature-card">
-          <h3>🌍 Community Powered</h3>
-          <p>Connect with learners, creators, and talented individuals around you.</p>
-        </div>
       </div>
-    </section> -->
 
-    <!-- ⭐ NEW MARQUEE SCROLL SECTION -->
-    <!-- <section class="marquee-section">
-      <div class="marquee">
-        <span>
-          Web Development • Guitar • Cooking • Python • Fitness Training • UI/UX • Painting • Video Editing • Photography • Public Speaking •
-        </span>
+      <div class="hero-visual">
+        <!-- replace hero-illustration.png with your illustration -->
+        <img src="/img/hero-illustration.png" alt="Hero illustration">
       </div>
-    </section> -->
-    <main class="dash-container">
-
-  <!-- HERO AREA -->
-  <section class="dash-hero">
-    <div class="hero-left">
-      <h1>Learn, Teach, Grow — Together.</h1>
-      <p>A peer-to-peer, credit-based skill exchange platform.</p>
-
-      <div class="hero-buttons">
-        <a href="/skills" class="btn-primary">Find a Skill Partner</a>
-        <a href="/skills/add" class="btn-secondary">Start Teaching & Earn Credits</a>
-      </div>
-    </div>
-
-    <div class="hero-img">
-      <img src="/img/hero-illustration.png" alt="">
     </div>
   </section>
 
-
-  <!-- TOP CARDS SECTION -->
-  <section class="top-cards">
-    
-    <div class="dash-card">
-      <h3>⚡ <%= currentUser ? currentUser.credits : 0 %> Credits</h3>
-      <p>Skills You Can Teach</p>
-      <a href="/skills/add" class="small-link">+ Add More</a>
-    </div>
-
-    <div class="dash-card">
+  <!-- CARDS: top row (full-width stacked) -->
+  <section class="cards-row">
+    <article class="card small">
       <h3>Skills You Can Teach</h3>
-      <p>Web Development, Graphic Design...</p>
+      <p class="muted">Add or edit skills you want to teach.</p>
+      <div class="tag-list">
+        <% if (currentUser && currentUser.skills && currentUser.skills.length) { %>
+          <% currentUser.skills.forEach(skill => { %>
+            <span class="tag"><%= skill %></span>
+          <% }) %>
+        <% } else { %>
+          <span class="tag muted">No skills added yet</span>
+        <% } %>
+      </div>
       <a href="/skills/add" class="small-link">+ Add More</a>
-    </div>
+    </article>
 
-    <div class="dash-card">
+    <article class="card small">
       <h3>Skills You Want to Learn</h3>
-      <p>Programming, Designing...</p>
-    </div>
+      <p class="muted">Tell us what you want to learn.</p>
+      <div class="tag-list">
+        <% if (currentUser && currentUser.wantToLearn && currentUser.wantToLearn.length) { %>
+          <% currentUser.wantToLearn.forEach(s => { %>
+            <span class="tag"><%= s %></span>
+          <% }) %>
+        <% } else { %>
+          <span class="tag muted">No preferences set</span>
+        <% } %>
+      </div>
+    </article>
 
-    <div class="dash-card ongoing">
+    <article class="card small ongoing">
       <h3>Ongoing Session</h3>
-      <div class="ongoing-info">
-        <img src="/img/user.png">
-        <div>
-          <p><b>Michael</b></p>
-          <p class="light">Public Speaking</p>
+      <% if (ongoingSession) { %>
+        <div class="session-row">
+          <img src="/img/user.png" class="avatar-sm">
+          <div>
+            <div class="bold"><%= ongoingSession.teacher.name %></div>
+            <div class="muted small"> <%= ongoingSession.skill %> • <%= ongoingSession.time %></div>
+          </div>
         </div>
-      </div>
-      <a class="btn-primary small">Join Session</a>
-    </div>
+        <a href="/sessions/<%= ongoingSession._id %>" class="btn btn-primary small">Join Session</a>
+      <% } else { %>
+        <p class="muted">No session running right now.</p>
+      <% } %>
+    </article>
   </section>
 
-
-  <!-- MATCHES SECTION -->
-  <section class="matches">
-    <h2>Your Best Matches Today</h2>
-    <div class="match-grid">
-
-      <div class="match-card">
-        <img src="/img/user1.jpg">
-        <h4>Sarah</h4>
-        <p>Public Speaking</p>
-        <a class="btn-primary small">Connect Now</a>
-      </div>
-
-      <div class="match-card">
-        <img src="/img/user2.jpg">
-        <h4>David</h4>
-        <p>Digital Marketing</p>
-        <a class="btn-primary small">Connect Now</a>
-      </div>
-
-      <div class="match-card">
-        <img src="/img/user3.jpg">
-        <h4>Emily</h4>
-        <p>Web Development</p>
-        <a class="btn-primary small">Connect Now</a>
-      </div>
-
-    </div>
-  </section>
-
-
-  <!-- SKILL CATEGORIES -->
-  <section class="cat-section">
-    <h2>Skill Categories</h2>
-    <div class="cat-grid">
-
-      <div class="cat-item">Programming</div>
-      <div class="cat-item">Designing</div>
-      <div class="cat-item">Public Speaking</div>
-      <div class="cat-item">Photography</div>
-      <div class="cat-item">Music</div>
-      <div class="cat-item">Soft Skills</div>
-      <div class="cat-item">Languages</div>
-      <div class="cat-item">Academics</div>
-
-    </div>
-  </section>
-
-
-  <!-- RECENT SKILLS (Your Original Data) -->
-  <section class="recent">
-    <h2>Recently Added Skills</h2>
-
-    <div class="recent-grid">
-      <% recent.forEach(s => { %>
-        <div class="dash-card">
-          <h3><a href="/skills/<%= s._id %>"><%= s.title %></a></h3>
-          <p class="light">By <%= s.teacher.name %></p>
-          <p><%= s.description.substring(0,120) %></p>
+  <!-- MATCHES (cards in a horizontal scroll on mobile) -->
+  <section class="section-block">
+    <h2 class="section-title">Your Best Matches Today</h2>
+    <div class="matches-scroll">
+      <% (matches || []).slice(0,8).forEach(m => { %>
+        <div class="match-card">
+          <img src="<%= m.avatar || '/img/user-placeholder.jpg' %>" class="avatar">
+          <h4><%= m.name %></h4>
+          <p class="muted small"><%= m.topSkill %></p>
+          <a href="/users/<%= m._id %>" class="btn btn-outline small">Connect</a>
         </div>
+      <% }) %>
+      <!-- fallback sample cards if no matches -->
+      <% if (!matches || matches.length === 0) { %>
+        <div class="match-card">
+          <img src="/img/user1.jpg" class="avatar">
+          <h4>Sarah</h4>
+          <p class="muted small">Public Speaking</p>
+          <a class="btn btn-outline small">Connect</a>
+        </div>
+
+        <div class="match-card">
+          <img src="/img/user2.jpg" class="avatar">
+          <h4>David</h4>
+          <p class="muted small">Digital Marketing</p>
+          <a class="btn btn-outline small">Connect</a>
+        </div>
+      <% } %>
+    </div>
+  </section>
+
+  <!-- CATEGORIES (grid) -->
+  <section class="section-block">
+    <h2 class="section-title">Skill Categories</h2>
+    <div class="categories-grid">
+      <% const cats = ['Programming','Designing','Public Speaking','Photography','Music','Soft Skills','Languages','Academics']; %>
+      <% cats.forEach(c => { %>
+        <a href="/skills?category=<%= encodeURIComponent(c) %>" class="cat-card">
+          <div class="cat-icon">📚</div>
+          <div class="cat-name"><%= c %></div>
+        </a>
       <% }) %>
     </div>
   </section>
 
+  <!-- RECENT SKILLS (your original data) -->
+  <section class="section-block">
+    <h2 class="section-title">Recently Added Skills</h2>
+    <div class="recent-grid">
+      <% recent.forEach(s => { %>
+        <article class="card">
+          <div class="card-row">
+            <div>
+              <h3 class="card-title"><a href="/skills/<%= s._id %>"><%= s.title %></a></h3>
+              <p class="muted small">By <%= s.teacher.name %></p>
+            </div>
+            <div class="card-actions">
+              <span class="tag small"> <%= s.category || 'General' %> </span>
+            </div>
+          </div>
+
+          <p class="card-desc"><%= s.description.substring(0,140) %></p>
+
+          <div class="card-footer">
+            <a href="/skills/<%= s._id %>" class="btn btn-outline small">View</a>
+            <div class="muted small">Posted <%= new Date(s.createdAt).toLocaleDateString() %></div>
+          </div>
+        </article>
+      <% }) %>
+    </div>
+  </section>
+
+  <!-- CREDIT ACTIVITY + AI RECOMMENDATIONS (stacked) -->
+  <section class="section-block">
+    <div class="card">
+      <h3>Credit Activity</h3>
+      <!-- simple SVG sparkline -->
+      <svg viewBox="0 0 300 60" class="sparkline" preserveAspectRatio="none">
+        <polyline fill="none" stroke="#3CB371" stroke-width="3" points="0,40 30,38 60,32 90,28 120,30 150,18 180,22 210,14 240,18 270,12 300,8"/>
+      </svg>
+      <p class="muted small">Credits earned vs spent over time</p>
+    </div>
+
+    <div class="card">
+      <h3>AI-Based Recommendations</h3>
+      <ul class="reco-list">
+        <li>Improve your profile visibility</li>
+        <li>Teach Writing to earn more credits</li>
+        <li>Recommended learners for your skill: Web Development</li>
+      </ul>
+    </div>
+  </section>
+
 </main>
+
 
     
     
